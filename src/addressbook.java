@@ -31,6 +31,20 @@ public class addressbook {
 		//Add Edit Delete Save and Close options for this addressbook dine
 	}
 	
+	public static String cinmethod() //this method returns the string of what is written to the console.
+	{
+	    BufferedReader readConsole = new BufferedReader(new InputStreamReader(System.in));
+	    String input = "";
+		try {
+	   	  input = readConsole.readLine();
+	   }
+	   catch(IOException e)
+	   {
+	       System.out.println( e );
+	   }
+	   return input;
+	}
+	
 	void readfile(String filename)
 	{
 		this.listofpeople = new ArrayList<Person>();
@@ -143,6 +157,44 @@ public class addressbook {
 	
 	void editperson()
 	{
+		String firstname = "";
+		int user_input = 0;
+		
+		String updated = "";
+		int index = 0;
+		System.out.println("What is the name of the person whose entry you want to modify ?\n");
+		firstname = cinmethod();
+		//loop listofpeople to retrieve the index, print the object and edit it.
+		for(int i=0; i<listofpeople.size(); i++)
+		{
+			if(listofpeople.get(i).fname.equals(firstname))
+			{
+				index = i ;
+				listofpeople.get(i).printPerson();
+				break;
+			}
+		}
+		System.out.println("Do you want to edit this entry's last name(1), address(2) or phone number(3) ?\n");
+		user_input = Integer.parseInt(cinmethod());
+		
+		switch(user_input)
+		{
+		case 1:
+			System.out.println("What is the new last name?\n");
+			updated = cinmethod();
+			listofpeople.get(index).lname = updated;
+			break ;
+		case 2:
+			System.out.println("What is the new address ?\n");
+			updated = cinmethod();
+			listofpeople.get(index).address = updated;
+			break;
+		case 3:
+			System.out.println("What is the new phone number ?\n");
+			updated = cinmethod();
+			listofpeople.get(index).phone = updated;
+			break;
+		}
 		
 	}
 	
@@ -190,7 +242,10 @@ public class addressbook {
 		    case 1: //wants to add a new entry to the address book.
 		    	this.addperson();
 		    	break;
+		    	
 		    case 2:
+		    	this.editperson();
+		    	break;
 		    	
 		    case 3:
 		    	
@@ -198,6 +253,7 @@ public class addressbook {
 		    	isloop = false;
 		    	saveandclose(filename);
 		    	break;
+		    	
 		    default:
 		    	continue;
 		    }

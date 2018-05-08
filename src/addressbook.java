@@ -152,7 +152,20 @@ public class addressbook {
 	
 	void deleteperson()
 	{
+		String firstname = "";
+		System.out.println("What is the name of the person whose entry you want to DELETE?\n");
+		firstname = cinmethod();
 		
+		for(int i=0; i<listofpeople.size(); i++)
+		{
+			if(listofpeople.get(i).fname.equals(firstname))
+			{
+				listofpeople.remove(i);
+				System.out.println("Deleted successfully");
+				break;
+			}
+		}
+		System.out.println("Person with the name "+ firstname + " not found in file" );
 	}
 	
 	void editperson()
@@ -174,6 +187,7 @@ public class addressbook {
 				break;
 			}
 		}
+		
 		System.out.println("Do you want to edit this entry's last name(1), address(2) or phone number(3) ?\n");
 		user_input = Integer.parseInt(cinmethod());
 		
@@ -197,7 +211,6 @@ public class addressbook {
 		}
 		
 	}
-	
 	
 	void print_address_book()
 	{
@@ -224,6 +237,7 @@ public class addressbook {
 		boolean isloop = true ;
 		while(isloop)
 		{
+			this.print_address_book();
 			System.out.println("Do you want to add(1), edit(2), delete(3) an entry from this address book or save and close (4) ?\n");
 			BufferedReader readConsole = new BufferedReader(new InputStreamReader(System.in));
 		    int user_input = 0;
@@ -235,7 +249,6 @@ public class addressbook {
 		        System.out.println( e );
 		    }
 		    
-		    System.out.println(user_input);
 		    switch(user_input)
 		    {
 		    
@@ -248,6 +261,8 @@ public class addressbook {
 		    	break;
 		    	
 		    case 3:
+		    	this.deleteperson();
+		    	break;
 		    	
 		    case 4:
 		    	isloop = false;

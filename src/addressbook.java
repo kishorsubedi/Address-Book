@@ -195,45 +195,59 @@ public class addressbook {
 				break;
 			}
 		}
-		
-		System.out.println("Do you want to edit this entry's last name(1), address(2), city(3), state(4), zip(5), phone(6) ?\n");
+		System.out.println("Do you want to edit this entry's last name(1), address(2), city(3), state(4), zip(5), phone(6) ? 7 if editing is done \n");
 		user_input = Integer.parseInt(cinmethod());
 		
-		switch(user_input)
+		while(user_input != 7)
 		{
-		case 1:
-			System.out.println("What is the new last name?\n");
-			updated = cinmethod();
-			listofpeople.get(index).lname = updated;
-			break ;
-		case 2:
-			System.out.println("What is the new address ?\n");
-			updated = cinmethod();
-			listofpeople.get(index).address = updated;
-			break;
-		case 3:
-			System.out.println("What is the new city ?\n");
-			updated = cinmethod();
-			listofpeople.get(index).city = updated;
-			break;
-		
-		case 4:
-			System.out.println("What is the new state ?\n");
-			updated = cinmethod();
-			listofpeople.get(index).state = updated;
+			switch(user_input)
+			{
+			case 1:
+				System.out.println("What is the new last name?\n");
+				updated = cinmethod();
+				listofpeople.get(index).lname = updated;
+				//user_input = 1;
+				break ;
+				
+			case 2:
+				System.out.println("What is the new address ?\n");
+				updated = cinmethod();
+				listofpeople.get(index).address = updated;
+				//user_input = 2;
+				break;
+				
+			case 3:
+				System.out.println("What is the new city ?\n");
+				updated = cinmethod();
+				listofpeople.get(index).city = updated;
+				//user_input = 3;
+				break;
 			
-		case 5:
-			System.out.println("What is the new zip ?\n");
-			updated = cinmethod();
-			listofpeople.get(index).zip = Integer.parseInt(updated);
-			
-		case 6:
-			System.out.println("What is the new phone ?\n");
-			updated = cinmethod();
-			listofpeople.get(index).phone = updated;
-			
+			case 4:
+				System.out.println("What is the new state ?\n");
+				updated = cinmethod();
+				listofpeople.get(index).state = updated;
+				//user_input = 4;
+				break;
+				
+			case 5:
+				System.out.println("What is the new zip ?\n");
+				updated = cinmethod();
+				listofpeople.get(index).zip = Integer.parseInt(updated);
+				//user_input = 5;
+				break;
+				
+			case 6:
+				System.out.println("What is the new phone ?\n");
+				updated = cinmethod();
+				listofpeople.get(index).phone = updated;
+				//user_input = 6;
+				break;
+			}
+			System.out.println("Do you want to edit this entry's last name(1), address(2), city(3), state(4), zip(5), phone(6) ? 7 if editing is done \n");
+			user_input = Integer.parseInt(cinmethod());
 		}
-		
+		System.out.println("EDITING DONE");
 	}
 	
 	void print_address_book()

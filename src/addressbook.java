@@ -1,9 +1,9 @@
-
 import java.util.* ;
 import java.util.Formatter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,8 +45,46 @@ public class addressbook {
 	void readfile(String filename)
 	{
 		this.listofpeople = new ArrayList<Person>();
-		Scanner x = null;
 		
+		BufferedReader br = null;
+		try
+		 {
+			 File file = new File(filepath + filename);
+			 br = new BufferedReader(new FileReader(file));
+			 
+		 	String line ;
+		 	Person man = new Person();
+		 	
+		 	while((line = br.readLine()) != null)
+		 	{
+		 		man.fname = line;
+		 		man.lname = br.readLine();
+		 		man.address = br.readLine();
+		 		man.city = br.readLine();
+		 		man.state = br.readLine();
+		 		man.zip = br.readLine();
+		 		man.phone = br.readLine();
+		 		
+		 		listofpeople.add(no_of_people++, man);
+		 	}
+		 	
+		 }
+		 catch (IOException e)
+		 {
+			 System.out.println(e);
+		 }
+		 finally
+		 {
+			 try {
+			       br.close();
+			    } catch (IOException e) {
+			        e.printStackTrace();
+			    }
+		 }
+		
+		 /*
+	
+		Scanner x = null;
 		try
 		{
 			x = new Scanner(new File(filepath+filename));
@@ -71,6 +109,8 @@ public class addressbook {
 			listofpeople.add(no_of_people++, man);
 		}
 		x.close();
+		*/
+
 	}
 	
  void writetofile(ArrayList<Person> listofpeople, String fullfilepath)
@@ -101,11 +141,17 @@ public class addressbook {
 				for(int i=0; i< listofpeople.size(); i++)
 				{
 					buffW.write(listofpeople.get(i).fname + "\t");
+					buffW.newLine();
 					buffW.write(listofpeople.get(i).lname + "\t");
+					buffW.newLine();
 					buffW.write(listofpeople.get(i).address + "\t");
+					buffW.newLine();
 					buffW.write(listofpeople.get(i).city + "\t");
+					buffW.newLine();
 					buffW.write(listofpeople.get(i).state + "\t");
+					buffW.newLine();
 					buffW.write(listofpeople.get(i).zip + "\t");
+					buffW.newLine();
 					buffW.write(listofpeople.get(i).phone + "\t");
 						buffW.newLine();
 					}
@@ -139,7 +185,7 @@ public class addressbook {
 	    	 man.state = readConsole.readLine();
 	    	 
 	    	 System.out.println("Please enter person's zip\n") ;
-	    	 man.zip = Integer.parseInt(readConsole.readLine());
+	    	 man.zip = readConsole.readLine();
 	    	 
 	    	 System.out.println("Please enter person's phone number\n") ;
 	    	 man.phone = readConsole.readLine();

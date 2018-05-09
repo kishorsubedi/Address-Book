@@ -5,7 +5,7 @@ public class Person{
   String phone;
   String city;
   String state;
-  int zip;
+  String zip;
   
   Person()
   {
@@ -15,10 +15,10 @@ public class Person{
     phone = "";
     city = "";
     state ="";
-    zip = 0;
+    zip = "";
   }
   
-  Person(String fname, String lname, String address,String phone, String city, String state, int zip)
+  Person(String fname, String lname, String address,String phone, String city, String state, String zip)
   {
     this.fname = fname;
     this.lname = lname;
@@ -36,6 +36,6 @@ public class Person{
       System.out.println(phone+"\n");
       System.out.println(city+"\n");
       System.out.println(state+"\n");
-      System.out.println(Integer.toString(zip)+"\n");
+      System.out.println(zip+"\n\n");
   }
 }

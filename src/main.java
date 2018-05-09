@@ -2,28 +2,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class main {
+class main extends cinmethod{
 	
-	public static String cinmethod() //this method returns the string of what is written to the console.
-	{
-	    BufferedReader readConsole = new BufferedReader(new InputStreamReader(System.in));
-	    String input = "";
-		try {
-	   	  input = readConsole.readLine();
-	   }
-	   catch(IOException e)
-	   {
-	       System.out.println( e );
-	   }
-	   return input;
-	}
 	
   public static void main(String[] args) {
     
-	  
+	String user_input ;
+	
+	do {
     System.out.println("What do you want to do? \n C for Create new addressbook \n O for Open new addressbook");
-    String user_input = cinmethod();
-    
+    user_input = cinmethod();
+	}
+	while(!user_input.equals("C") && !user_input.equals("O"));
+	
+
     //sodyo ani user_input ma store vayo
     if (user_input.equals("C")){
     	System.out.println("Creating a new address book.....");

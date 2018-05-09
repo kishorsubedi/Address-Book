@@ -26,9 +26,6 @@ public class addressbook {
 				readfile(filename);
 				//stream the file from filepath, make a read function to stream to a new address book.
 			}
-		// .txt file banaune
-		//arraylist lai initialize gardiney
-		//Add Edit Delete Save and Close options for this addressbook dine
 	}
 	
 	public static String cinmethod() //this method returns the string of what is written to the console.
@@ -66,13 +63,14 @@ public class addressbook {
 			man.fname = x.next();
 			man.lname = x.next();
 			man.address = x.next();
+			man.city = x.next();
+			man.state = x.next();
+			man.zip = Integer.parseInt(x.next());
 			man.phone = x.next();
 			
 			listofpeople.add(no_of_people++, man);
 		}
 		x.close();
-		System.out.println("File bata stream vayera listofpeople ma basyo no_of_people =" + no_of_people);
-		
 	}
 	
  void writetofile(ArrayList<Person> listofpeople, String fullfilepath)
@@ -105,6 +103,9 @@ public class addressbook {
 					buffW.write(listofpeople.get(i).fname + "\t");
 					buffW.write(listofpeople.get(i).lname + "\t");
 					buffW.write(listofpeople.get(i).address + "\t");
+					buffW.write(listofpeople.get(i).city + "\t");
+					buffW.write(listofpeople.get(i).state + "\t");
+					buffW.write(listofpeople.get(i).zip + "\t");
 					buffW.write(listofpeople.get(i).phone + "\t");
 						buffW.newLine();
 					}
@@ -131,6 +132,15 @@ public class addressbook {
 	    	 System.out.println("Please enter person's address\n") ;
 	    	 man.address = readConsole.readLine();
 	    	 
+	    	 System.out.println("Please enter person's city\n") ;
+	    	 man.city = readConsole.readLine();
+	    	 
+	    	 System.out.println("Please enter person's state\n") ;
+	    	 man.state = readConsole.readLine();
+	    	 
+	    	 System.out.println("Please enter person's zip\n") ;
+	    	 man.zip = Integer.parseInt(readConsole.readLine());
+	    	 
 	    	 System.out.println("Please enter person's phone number\n") ;
 	    	 man.phone = readConsole.readLine();
 	    }
@@ -139,8 +149,6 @@ public class addressbook {
 	        System.out.println( e );
 	    }
 		//person object created and populated
-		
-		
 		
 		if(this.listofpeople == null)
 		{
@@ -188,7 +196,7 @@ public class addressbook {
 			}
 		}
 		
-		System.out.println("Do you want to edit this entry's last name(1), address(2) or phone number(3) ?\n");
+		System.out.println("Do you want to edit this entry's last name(1), address(2), city(3), state(4), zip(5), phone(6) ?\n");
 		user_input = Integer.parseInt(cinmethod());
 		
 		switch(user_input)
@@ -204,10 +212,26 @@ public class addressbook {
 			listofpeople.get(index).address = updated;
 			break;
 		case 3:
-			System.out.println("What is the new phone number ?\n");
+			System.out.println("What is the new city ?\n");
+			updated = cinmethod();
+			listofpeople.get(index).city = updated;
+			break;
+		
+		case 4:
+			System.out.println("What is the new state ?\n");
+			updated = cinmethod();
+			listofpeople.get(index).state = updated;
+			
+		case 5:
+			System.out.println("What is the new zip ?\n");
+			updated = cinmethod();
+			listofpeople.get(index).zip = Integer.parseInt(updated);
+			
+		case 6:
+			System.out.println("What is the new phone ?\n");
 			updated = cinmethod();
 			listofpeople.get(index).phone = updated;
-			break;
+			
 		}
 		
 	}

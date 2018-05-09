@@ -178,23 +178,32 @@ public class addressbook {
 	
 	void editperson()
 	{
+		boolean found = false;
 		String firstname = "";
 		int user_input = 0;
 		
 		String updated = "";
 		int index = 0;
-		System.out.println("What is the name of the person whose entry you want to modify ?\n");
-		firstname = cinmethod();
-		//loop listofpeople to retrieve the index, print the object and edit it.
-		for(int i=0; i<listofpeople.size(); i++)
+		
+		while(found == false)
 		{
-			if(listofpeople.get(i).fname.equals(firstname))
+			System.out.println("What is the name of the person whose entry you want to modify ?\n");
+			firstname = cinmethod();
+			//loop listofpeople to retrieve the index, print the object and edit it.
+			for(int i=0; i<listofpeople.size(); i++)
 			{
-				index = i ;
-				listofpeople.get(i).printPerson();
-				break;
+				if(listofpeople.get(i).fname.equals(firstname))
+				{
+					found = true;
+					index = i ;
+					listofpeople.get(i).printPerson();
+					break;
+				}
 			}
+			if(found ==false)
+				System.out.println("You want to edit the person who is not here in this address book.");
 		}
+		
 		System.out.println("Do you want to edit this entry's last name(1), address(2), city(3), state(4), zip(5), phone(6) ? 7 if editing is done \n");
 		user_input = Integer.parseInt(cinmethod());
 		

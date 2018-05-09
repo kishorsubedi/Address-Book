@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.File;
 
 class main extends cinmethod{
 	
@@ -18,10 +19,18 @@ class main extends cinmethod{
 
     //sodyo ani user_input ma store vayo
     if (user_input.equals("C")){
-    	System.out.println("Creating a new address book.....");
-    	System.out.println("What do you like your new addressbook be called? \n");
     	
-    	String filename = cinmethod();
+    	File f;
+    	String filename;
+    	do {
+        	System.out.println("Creating a new address book.....");
+        	System.out.println("What do you like your new addressbook be called? \n");
+        	
+        	filename = cinmethod();
+        	f = new File("src/books/"+filename);
+    	}
+    	while(f.exists()==true);
+    	
     	addressbook book = new addressbook("C", filename);
     	book.askingmethod(filename);
     }

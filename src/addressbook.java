@@ -237,7 +237,6 @@ public class addressbook {
 		boolean isloop = true ;
 		while(isloop)
 		{
-			this.print_address_book();
 			System.out.println("Do you want to add(1), edit(2), delete(3) an entry from this address book or save and close (4) ?\n");
 			BufferedReader readConsole = new BufferedReader(new InputStreamReader(System.in));
 		    int user_input = 0;
